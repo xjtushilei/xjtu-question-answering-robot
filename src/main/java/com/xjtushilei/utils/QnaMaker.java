@@ -45,6 +45,7 @@ public class QnaMaker {
             }
         }
         catch (Exception e){
+            System.out.println("qna-maker 次数限制！");
             return null;
         }
     }
