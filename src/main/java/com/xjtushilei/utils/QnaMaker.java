@@ -23,23 +23,28 @@ public class QnaMaker {
     }
 
     public static String getAnswer(RestTemplate restTemplate, String question) {
-        String url = "https://westus.api.cognitive.microsoft.com/qnamaker/v2.0//knowledgebases/a90e29eb-2b9e-4995-b3d1-3917097482e6/generateAnswer";
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Ocp-Apim-Subscription-Key", "3f5a37d9698744f3b40c89e2f0c94fb1");
-        headers.add("Content-Type", "application/x-www-form-urlencoded");
+        try {
+            String url = "https://westus.api.cognitive.microsoft.com/qnamaker/v2.0//knowledgebases/a90e29eb-2b9e-4995-b3d1-3917097482e6/generateAnswer";
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Ocp-Apim-Subscription-Key", "3f5a37d9698744f3b40c89e2f0c94fb1");
+            headers.add("Content-Type", "application/x-www-form-urlencoded");
 
 
-        MultiValueMap<String, String> bodyMap = new LinkedMultiValueMap<>();
-        bodyMap.add("question", question);
+            MultiValueMap<String, String> bodyMap = new LinkedMultiValueMap<>();
+            bodyMap.add("question", question);
 
 
-        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(bodyMap, headers);
-        String result = restTemplate.postForObject(url, requestEntity, String.class);
+            HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(bodyMap, headers);
+            String result = restTemplate.postForObject(url, requestEntity, String.class);
 
-        Map<String, Object> answerObject = JsonPath.read(result, "$.answers[0]");
-        if ((double) answerObject.get("score") > 30.0) {
-            return answerObject.get("answer").toString();
-        } else {
+            Map<String, Object> answerObject = JsonPath.read(result, "$.answers[0]");
+            if ((double) answerObject.get("score") > 15.0) {
+                return answerObject.get("answer").toString();
+            } else {
+                return null;
+            }
+        }
+        catch (Exception e){
             return null;
         }
     }
