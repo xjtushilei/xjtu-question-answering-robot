@@ -54,15 +54,15 @@ public class Spider {
                     : null;
             if (answer != null) return answer;
 
-            //bing.com
-            driver.get("http://cn.bing.com/search?q=" + question);
-            doc = Jsoup.parse(driver.getPageSource());
-            answer = doc.select(".msnv2_component_padding").size() !=0 ?doc.select(".msnv2_component_padding").get(1)
-                    .text()
-                    :null;
-            if (answer!=null){
-                return answer;
-            }
+//            //bing.com
+//            driver.get("http://cn.bing.com/search?q=" + question);
+//            doc = Jsoup.parse(driver.getPageSource());
+//            answer = doc.select(".msnv2_component_padding").size() !=0 ?doc.select(".msnv2_component_padding").get(1)
+//                    .text()
+//                    :null;
+//            if (answer!=null){
+//                return answer;
+//            }
 
             return null;
         }
