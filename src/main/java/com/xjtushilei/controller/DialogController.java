@@ -1,6 +1,8 @@
 package com.xjtushilei.controller;
 
+import com.xjtushilei.knowledge.entity.Log;
 import com.xjtushilei.knowledge.entity.Qna;
+import com.xjtushilei.knowledge.repository.LogRepository;
 import com.xjtushilei.knowledge.repository.QnaRepository;
 import com.xjtushilei.utils.QnaMaker;
 import com.xjtushilei.utils.QuestionPre;
@@ -26,6 +28,9 @@ class DialogController {
 
     @Autowired
     QnaRepository qnaRepository;
+
+    @Autowired
+    LogRepository logRepository;
 
     @RequestMapping("getAnswer")
     public String getAnswer(String question) {
@@ -76,6 +81,9 @@ class DialogController {
         } finally {
             //记录缓存
             if (step != 4) qnaRepository.save(new Qna(questionBak, answer, step));
+            //记录日志
+            logRepository.save(new Log(questionBak,answer));
+
 
         }
     }
