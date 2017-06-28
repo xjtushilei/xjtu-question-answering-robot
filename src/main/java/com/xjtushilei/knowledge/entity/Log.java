@@ -15,7 +15,6 @@ public class Log {
     @GeneratedValue
     private Long id;
 
-    @Column(unique = true)
     private String question;
 
     private String answer;

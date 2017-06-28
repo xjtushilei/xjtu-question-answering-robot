@@ -38,14 +38,14 @@ public class QnaMaker {
             String result = restTemplate.postForObject(url, requestEntity, String.class);
 
             Map<String, Object> answerObject = JsonPath.read(result, "$.answers[0]");
-            if ((double) answerObject.get("score") > 10.0) {
+            if ((double) answerObject.get("score") > 0.0) {
                 return answerObject.get("answer").toString();
             } else {
                 return null;
             }
         }
         catch (Exception e){
-            System.out.println("qna-maker 次数限制！");
+            System.out.println("qna-maker 次数限制！ ");
             return null;
         }
     }

@@ -45,7 +45,6 @@ class DialogController {
         try {
             //0. 问题预处理
             question = QuestionPre.deal(question);
-
             //1.搜索引擎的图谱搜索
             System.out.println(1 + ":搜索引擎的图谱搜索");
             answer = Spider.getKnowledgeGraphAnswer(question);
@@ -79,6 +78,7 @@ class DialogController {
             if (answer != null) return answer;
             return "无可奉告!";
         } finally {
+            System.out.println(question+":"+answer);
             //记录缓存
             if (step != 4) qnaRepository.save(new Qna(questionBak, answer, step));
             //记录日志
