@@ -6,7 +6,7 @@
 	<groupId>com.xjtushilei</groupId>
 	<artifactId>xjtu-question-answering-robot</artifactId>
 	<version>0.0.1</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>xjtu-question-answering-robot</name>
 	<description>西安交大的智能机器人</description>

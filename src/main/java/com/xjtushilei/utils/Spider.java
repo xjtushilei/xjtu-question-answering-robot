@@ -104,15 +104,15 @@ public class Spider {
          */
         answer = doc.select("#wgt-autoask").size() != 0 ? getBestAnswer(doc.select("#wgt-autoask > dl > dt > a").attr("abs:href")): null;
         if (answer != null) return answer;
-//        /*
-//         * 2.第一个答案(至少250条结果才能进行计算)
-//         */
-//        String span = doc.select("#wgt-picker > div.picker-header > span").text();
-//        int count = Integer.valueOf(span.substring(1,span.indexOf("条")));
-//        if (count>250){
-//            answer = doc.select("#wgt-list > dl:nth-child(1) > dt > a").size() != 0 ? getBestAnswer(doc.select("#wgt-list > dl:nth-child(1) > dt > a").attr("abs:href")): null;
-//        }
-//        if (answer != null) return answer;
+        /*
+         * 2.第一个答案(至少250条结果才能进行计算)
+         */
+        String span = doc.select("#wgt-picker > div.picker-header > span").text();
+        int count = Integer.valueOf(span.substring(1,span.indexOf("条")));
+        if (count>250){
+            answer = doc.select("#wgt-list > dl:nth-child(1) > dt > a").size() != 0 ? getBestAnswer(doc.select("#wgt-list > dl:nth-child(1) > dt > a").attr("abs:href")): null;
+        }
+        if (answer != null) return answer;
         return null;
 
 
