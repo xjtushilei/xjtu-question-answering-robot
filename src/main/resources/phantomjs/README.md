@@ -7,4 +7,4 @@
 
 ## 其他
 
-在docker环境下，或者有些linux环境下，会缺少一些系统的lib，需要安装，比如：`RUN yum install -y fontconfig`。其他的可以去官网查看！
+在docker环境下，或者有些linux环境下，会缺少一些系统的lib，需要安装，比如：`RUN yum install -y fontconfig`。其他的可以去官网查看 ！
